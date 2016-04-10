@@ -31,10 +31,26 @@ RSpec.describe(Image) do
     expect(image.bitmap).to eq({[1, 1] => 0, [2, 1] => 0, [3, 1] => 0, [4, 1] => 0, [5, 1] => 0, [6, 1] => 0, [7, 1] => 0, [1, 2] => 0, [2, 2] => 0, [3, 2] => 0, [4, 2] => 0, [5, 2] => 0, [6, 2] => 0, [7, 2] => 0, [1, 3] => 0, [2, 3] => 0, [3, 3] => 'Y', [4, 3] => 0, [5, 3] => 0, [6, 3] => 0, [7, 3] => 0, [1, 4] => 0, [2, 4] => 0, [3, 4] => 0, [4, 4] => 0, [5, 4] => 0, [6, 4] => 0, [7, 4] => 0, [1, 5] => 0, [2, 5] => 0, [3, 5] => 0, [4, 5] => 0, [5, 5] => 0, [6, 5] => 0, [7, 5] => 0})
   end
 
+  it 'should vertical_color method raise exception if given coordinates are not valid' do
+    image.clear
+    expect{ image.vertical_color(1, 1, 500, 'G')}.to raise_error(RuntimeError)
+  end
+
   it 'should vertical add color to array image' do
     image.clear
     image.vertical_color(1, 1, 5, 'G')
     expect(image.bitmap).to eq({[1, 1] => "G", [2, 1] => 0, [3, 1] => 0, [4, 1] => 0, [5, 1] => 0, [6, 1] => 0, [7, 1] => 0, [1, 2] => "G", [2, 2] => 0, [3, 2] => 0, [4, 2] => 0, [5, 2] => 0, [6, 2] => 0, [7, 2] => 0, [1, 3] => "G", [2, 3] => 0, [3, 3] => 0, [4, 3] => 0, [5, 3] => 0, [6, 3] => 0, [7, 3] => 0, [1, 4] => "G", [2, 4] => 0, [3, 4] => 0, [4, 4] => 0, [5, 4] => 0, [6, 4] => 0, [7, 4] => 0, [1, 5] => "G", [2, 5] => 0, [3, 5] => 0, [4, 5] => 0, [5, 5] => 0, [6, 5] => 0, [7, 5] => 0})
+  end
+
+  it 'should horizontal_color method raise exception if given coordinates are not valid' do
+    image.clear
+    expect{ image.horizontal_color(2, 77, 4, 'A') }.to raise_error(RuntimeError)
+  end
+
+  it 'should vertical add color to array image' do
+    image.clear
+    image.horizontal_color(2, 7, 4, 'A')
+    expect(image.bitmap).to eq({[1, 1] => 0, [2, 1] => 0, [3, 1] => 0, [4, 1] => 0, [5, 1] => 0, [6, 1] => 0, [7, 1] => 0, [1, 2] => 0, [2, 2] => 0, [3, 2] => 0, [4, 2] => 0, [5, 2] => 0, [6, 2] => 0, [7, 2] => 0, [1, 3] => 0, [2, 3] => 0, [3, 3] => 0, [4, 3] => 0, [5, 3] => 0, [6, 3] => 0, [7, 3] => 0, [1, 4] => 0, [2, 4] => "A", [3, 4] => "A", [4, 4] => "A", [5, 4] => "A", [6, 4] => "A", [7, 4] => "A", [1, 5] => 0, [2, 5] => 0, [3, 5] => 0, [4, 5] => 0, [5, 5] => 0, [6, 5] => 0, [7, 5] => 0})
   end
 
 end

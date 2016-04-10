@@ -42,6 +42,10 @@ class Image
     end
   end
 
-
+  def horizontal_color(x1, x2, y, color)
+    x1.upto(x2) do |x|
+      @bitmap[[x, y]] = @bitmap.key?([x, y]) ? color : raise
+    end
+  end
 
 end

@@ -15,6 +15,8 @@ class BitmapEditor
           color_image($1.to_i, $2.to_i, $3)
         when /^V ([1-9][0-9]*) ([1-9][0-9]*) ([1-9][0-9]*) ([A-Z])$/
           vertical_color_image($1.to_i, $2.to_i, $3.to_i, $4)
+        when /^H ([1-9][0-9]*) ([1-9][0-9]*) ([1-9][0-9]*) ([A-Z])$/
+          horizontal_color_image($1.to_i, $2.to_i, $3.to_i, $4)
         when 'S'
           show_image
         when '?'
@@ -39,15 +41,19 @@ class BitmapEditor
   end
 
   def color_image(x, y, color)
-    @image.nil? ? show_error : @image.color_image(x, y, color)
+    @image.nil? ? show_error("Please create an image first!") : @image.color_image(x, y, color)
   end
 
   def show_image
-    puts @image.nil? ? show_error : @image.show
+    puts @image.nil? ? show_error("Please create an image first!") : @image.show
   end
 
   def vertical_color_image(x, y1, y2, color)
-    @image.nil? ? show_error : @image.vertical_color(x, y1, y2, color)
+    @image.nil? ? show_error : @image.vertical_color(x, y1, y2, color) rescue show_error("Please enter proper coordinates!")
+  end
+
+  def horizontal_color_image(x1, x2, y, color)
+    @image.nil? ? show_error : @image.horizontal_color(x1, x2, y, color) rescue show_error("Please enter proper coordinates!")
   end
 
   def exit_console
@@ -66,8 +72,8 @@ S - Show the contents of the current image
 X - Terminate the session"
   end
 
-  def show_error
-    puts "Please create an image first!"
+  def show_error(message)
+    puts message
   end
 
 
