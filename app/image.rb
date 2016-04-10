@@ -36,4 +36,12 @@ class Image
     @bitmap[[x, y]] = @bitmap.key?([x, y]) ? color : raise
   end
 
+  def vertical_color(x, y1, y2, color)
+    y1.upto(y2) do |y|
+      @bitmap[[x, y]] = @bitmap.key?([x, y]) ? color : raise
+    end
+  end
+
+
+
 end

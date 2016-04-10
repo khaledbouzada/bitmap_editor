@@ -13,6 +13,8 @@ class BitmapEditor
           clear_image
         when /^L ([1-9][0-9]*) ([1-9][0-9]*) ([A-Z])$/
           color_image($1.to_i, $2.to_i, $3)
+        when /^V ([1-9][0-9]*) ([1-9][0-9]*) ([1-9][0-9]*) ([A-Z])$/
+          vertical_color_image($1.to_i, $2.to_i, $3.to_i, $4)
         when 'S'
           show_image
         when '?'
@@ -44,8 +46,8 @@ class BitmapEditor
     puts @image.nil? ? show_error : @image.show
   end
 
-  def display_matrix
-    @image ? ImageView.new(@image).display : error
+  def vertical_color_image(x, y1, y2, color)
+    @image.nil? ? show_error : @image.vertical_color(x, y1, y2, color)
   end
 
   def exit_console
