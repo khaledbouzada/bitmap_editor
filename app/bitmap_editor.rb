@@ -41,7 +41,7 @@ class BitmapEditor
   end
 
   def show_image
-    @image.nil? ? show_error : @image.show
+    puts @image.nil? ? show_error : @image.show
   end
 
   def display_matrix

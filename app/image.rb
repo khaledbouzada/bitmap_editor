@@ -7,7 +7,6 @@ class Image
     @width = width < 1 ? raise : width
     @height = height < 1 ? raise : height
     @bitmap = Hash.new
-
   end
 
   def clear
@@ -22,7 +21,7 @@ class Image
       end
       image_array += "\n"
     end
-    puts image_array
+    image_array
   end
 
   def fill_image
